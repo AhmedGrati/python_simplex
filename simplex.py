@@ -1,5 +1,5 @@
 import numpy as np
-
+import math
 np.seterr(divide='ignore', invalid='ignore')
 
 
@@ -83,6 +83,7 @@ def maximization():
         bj = matrix[:, -1]
         # extract sorted values by dividing bj by pivot vector
         vs = np.divide(bj, pivot_vector)
+        vs[vs < 0] = math.nan
         # extract the index of the min element in the array so we know the pivot element
         min_index = int(np.where(vs == min(vs))[0])
         matrix[min_index] = matrix[min_index] / matrix[min_index, max_index]
